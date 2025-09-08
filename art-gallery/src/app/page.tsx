@@ -1,8 +1,11 @@
+import { ArtworkCarousel } from "@/components/gallery/carrousel";
+
 export default function Home() {
   return (
     <div>
       <main >
-        hey there
+      <h1>Bienvenue dans mon univers</h1>
+      <ArtworkCarousel />
       </main>
     </div>
   );
