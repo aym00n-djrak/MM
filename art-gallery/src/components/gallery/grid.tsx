@@ -39,11 +39,28 @@ const ImageModal = ({ src, alt, onClose }: ImageModalProps) => {
 // Données fictives pour les images
 const artworks = [
   { id: 1, title: 'L\'instant suspendu', src: '/art1.jpg' },
-  { id: 2, title: 'Rêverie urbaine', src: '/art1.jpg' },
-  { id: 3, title: 'Le passage', src: '/art1.jpg' },
-  { id: 4, title: 'Sérénité', src: '/art1.jpg' },
-  { id: 5, title: 'Horizon lointain', src: '/art1.jpg' },
-  { id: 6, title: 'Échappée', src: '/art1.jpg' },
+  { id: 2, title: 'Reflets d\'âme', src: '/art2.jpg' },
+  { id: 3, title: 'Mélodie des couleurs', src: '/art3.jpg' },
+  { id: 4, title: 'Évasion urbaine', src: '/art4.jpg' },
+  { id: 5, title: 'Rêverie florale', src: '/art5.jpg' },
+  { id: 6, title: 'Danse des ombres', src: '/art6.jpg' },
+  { id: 7, title: 'Lueur d\'espoir', src: '/art7.jpg' },
+  { id: 8, title: 'Voyage intérieur', src: '/art8.jpg' },
+  { id: 9, title: 'Sérénité bleue', src: '/art9.jpg' },
+  { id: 10, title: 'Éclat de vie', src: '/art10.jpg' },
+  { id: 11, title: 'Mystère nocturne', src: '/art11.jpg' },
+  { id: 12, title: 'Chant des sirènes', src: '/art12.jpg' },
+  { id: 13, title: 'Souffle d\'automne', src: '/art13.jpg' },
+  { id: 14, title: 'Cascade de lumière', src: '/art14.jpg' },
+  { id: 15, title: 'Étreinte sauvage', src: '/art15.jpg' },
+  { id: 16, title: 'Rêve d\'horizon', src: '/art16.jpg' },
+  { id: 17, title: 'Murmures du passé', src: '/art17.jpg' },
+  { id: 18, title: 'Écho des montagnes', src: '/art18.jpg' },
+  { id: 19, title: 'Fleur de vie', src: '/art19.jpg' },
+  { id: 20, title: 'L\'art du mouvement', src: '/art20.jpg' },
+  { id: 21, title: 'Palette d\'émotions', src: '/art21.jpg' },
+  { id: 22, title: 'Rivage doré', src: '/art22.jpg' },
+  { id: 23, title: 'Symphonie visuelle', src: '/art23.jpg' }
 ];
 
 export default function GalleryGrid() {
