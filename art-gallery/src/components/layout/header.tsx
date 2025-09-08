@@ -4,14 +4,14 @@ import Navbar from "@/components/navbar/navbar";
 
 function Header() {
   return (
-    <header className="flex items-center gap-3 p-4 border-b border-gray-300">
-      <Link href="/" className="flex items-center gap-2">
+    <header className="flex items-center gap-3 p-4 bg-primary text-primary-foreground">
+      <Link href="/" className="flex items-center gap-2 transition motion-safe hover:scale-105">
         <Image
-        src="/palette.png"
-        alt="Art Gallery Logo"
-        width={50} 
-        height={50} 
-        />        
+          src="/palette.png"
+          alt="Art Gallery Logo"
+          width={50} 
+          height={50} 
+        />
         <span className="font-bold text-lg">Marc Monceau - Artiste Peintre</span>
       </Link>
       <div className="ml-auto">

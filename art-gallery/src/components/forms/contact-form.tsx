@@ -13,7 +13,7 @@ type FormData = {
   message: string
 }
 
-type FormStatus = 'idle' | 'loading' | 'success' | 'error'
+type FormStatus = 'idle' | 'success' | 'error'
 
 export function ContactForm() {
   const [formData, setFormData] = useState<FormData>({
@@ -24,7 +24,7 @@ export function ContactForm() {
     category: 'general',
     message: ''
   })
-  
+
   const [status, setStatus] = useState<FormStatus>('idle')
   const [errors, setErrors] = useState<Partial<FormData>>({})
 
@@ -64,37 +64,22 @@ export function ContactForm() {
     return Object.keys(newErrors).length === 0
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     
     if (!validateForm()) return
-    
-    setStatus('loading')
+
+    // Création du lien mailto
+    const recipient = 'contact@galerie-art.fr'
+    const subject = `[${formData.category.toUpperCase()}] ${formData.subject}`
+    const body = `Bonjour,\n\n${formData.message}\n\nDe la part de : ${formData.name}\nEmail : ${formData.email}\nTéléphone : ${formData.phone}`
+    const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
     
     try {
-      // Simulation d'un appel API
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      })
-      
-      if (response.ok) {
-        setStatus('success')
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          subject: '',
-          category: 'general',
-          message: ''
-        })
-      } else {
-        setStatus('error')
-      }
-    } catch {
+      window.location.href = mailtoLink
+      setStatus('success')
+    } catch (err) {
+      console.error("Erreur lors de l'ouverture du client mail:", err)
       setStatus('error')
     }
   }
@@ -117,15 +102,15 @@ export function ContactForm() {
           <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-4">
             <CheckCircle className="h-8 w-8 text-green-600" />
           </div>
-          <h3 className="text-2xl font-bold text-gray-900 mb-2">Message envoyé !</h3>
+          <h3 className="text-2xl font-bold text-gray-900 mb-2">Formulaire prêt !</h3>
           <p className="text-gray-600 mb-6">
-            Merci pour votre message. Nous vous répondrons dans les plus brefs délais.
+            Votre client de messagerie s&apos;est ouvert pour envoyer votre message.
           </p>
           <button
             onClick={() => setStatus('idle')}
             className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-lg font-medium transition-colors"
           >
-            Envoyer un autre message
+            Nouveau message
           </button>
         </div>
       </motion.div>
@@ -331,20 +316,10 @@ export function ContactForm() {
               <div>
                 <button
                   type="submit"
-                  disabled={status === 'loading'}
                   className="w-full bg-purple-600 hover:bg-purple-700 disabled:bg-purple-400 text-white font-medium py-3 px-6 rounded-lg transition-all duration-200 flex items-center justify-center space-x-2"
                 >
-                  {status === 'loading' ? (
-                    <>
-                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-                      <span>Envoi en cours...</span>
-                    </>
-                  ) : (
-                    <>
-                      <Send className="h-5 w-5" />
-                      <span>Envoyer le message</span>
-                    </>
-                  )}
+                  <Send className="h-5 w-5" />
+                  <span>Envoyer le message</span>
                 </button>
               </div>
             </form>
